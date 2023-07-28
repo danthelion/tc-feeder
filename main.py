@@ -3,15 +3,15 @@ import os
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
+import chromedriver_autoinstaller
 
 
 load_dotenv()
 
+chromedriver_autoinstaller.install()
+
 
 def get_driver():
-    chrome_service = ChromeService(ChromeDriverManager().install())
 
     chrome_options = webdriver.ChromeOptions()
     options = [
@@ -26,7 +26,7 @@ def get_driver():
     for option in options:
         chrome_options.add_argument(option)
 
-    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     return driver
 
 
