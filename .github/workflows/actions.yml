@@ -3,6 +3,7 @@ name: feed & train camel at 9am
 on:
   schedule:
     - cron: '0 9 * * *'
+  workflow_dispatch:
 
 jobs:
   build:

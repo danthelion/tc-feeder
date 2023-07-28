@@ -3,20 +3,15 @@ import os
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.os_manager import ChromeType
 
 load_dotenv()
 
 
 def get_driver():
-    chrome_service = Service(
-        ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-    )
+    chrome_service = Service()
 
-    chrome_options = Options()
+    chrome_options = webdriver.ChromeOptions()
     options = [
         "--headless",
         "--disable-gpu",
