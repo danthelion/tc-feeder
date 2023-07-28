@@ -3,13 +3,15 @@ import os
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 load_dotenv()
 
 
 def get_driver():
-    chrome_service = Service()
+    chrome_service = ChromeService(ChromeDriverManager().install())
 
     chrome_options = webdriver.ChromeOptions()
     options = [
@@ -68,8 +70,8 @@ def learn(driver):
 def main():
     driver = get_driver()
     login(driver)
-    feed(driver)
-    learn(driver)
+    # feed(driver)
+    # learn(driver)
 
 
 if __name__ == "__main__":
