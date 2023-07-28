@@ -8,10 +8,9 @@ import chromedriver_autoinstaller
 
 load_dotenv()
 
-chromedriver_autoinstaller.install()
-
 
 def get_driver():
+    chromedriver_autoinstaller.install()
 
     chrome_options = webdriver.ChromeOptions()
     options = [
