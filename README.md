@@ -7,7 +7,7 @@ Requires two input variables:
 - `tc_user`: Your TeveClub username
 - `tc_password`: Your TeveClub password
 
-Example workflow definition with secrets and a schedule to run every day at 9am, and allow manual triggering:
+Example workflow definition with GitHub Actions Secrets and a schedule to run every day at 9am.
 
 ```yaml
 name: Daily 🐪 training and feeding
