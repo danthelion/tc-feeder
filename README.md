@@ -2,12 +2,12 @@
 
 This GitHub Action will train your camel and feed it. Schedule it to run every day for best results.
 
-Requires two environment variables:
+Requires two input variables:
 
 - `TC_USER`: Your TC username
 - `TC_PASSWORD`: Your TC password
 
-Example workflow:
+Example workflow definition with secrets and a schedule to run every day at 9am, and allow manual triggering:
 
 ```yaml
 name: Daily 🐪 training and feeding
