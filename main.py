@@ -3,18 +3,12 @@ import os
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-import chromedriver_autoinstaller
 
 
 load_dotenv()
 
 
 def get_driver():
-    print(
-        f"Installing chromedriver version {chromedriver_autoinstaller.get_chrome_version()}"
-    )
-    chromedriver_autoinstaller.install()
-
     chrome_options = webdriver.ChromeOptions()
     options = [
         "--headless",
