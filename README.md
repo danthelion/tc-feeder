@@ -4,8 +4,8 @@ This GitHub Action will train your camel and feed it. Schedule it to run every d
 
 Requires two input variables:
 
-- `TC_USER`: Your TC username
-- `TC_PASSWORD`: Your TC password
+- `tc_user`: Your TeveClub username
+- `tc_password`: Your TeveClub password
 
 Example workflow definition with secrets and a schedule to run every day at 9am, and allow manual triggering:
 
