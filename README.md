@@ -23,7 +23,7 @@ jobs:
     steps:
 
       - name: Feed and train 🐪
-        uses: danthelion/tc-feeder@v1
+        uses: danthelion/tc-feeder@v2
         with:
           tc_user: ${{ secrets.TC_USER }}
           tc_password: ${{ secrets.TC_PASSWORD }}
