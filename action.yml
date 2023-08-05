@@ -7,3 +7,10 @@ branding:
 runs:
   using: "docker"
   image: "Dockerfile"
+inputs:
+  tc_user:
+    description: "Your TeveClub username"
+    required: true
+  tc_password:
+    description: "Your TeveClub password"
+    required: true

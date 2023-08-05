@@ -30,11 +30,21 @@ def get_driver():
 def login(driver):
     driver.get("https://teveclub.hu")
 
-    username = driver.find_element(by="name", value="tevenev")
-    username.send_keys(os.getenv("TC_USER"))
+    username = os.getenv("TC_USER", os.getenv("INPUT_TC_USER"))
+    if not username:
+        raise ValueError("Username not found in environment. Please set either TC_USER or INPUT_TC_USER.")
+    print(f"Logging in as {username}")
+
+    password = os.getenv("TC_PASSWORD", os.getenv("INPUT_TC_PASSWORD"))
+    if not password:
+        raise ValueError("Password not found in environment. Please set either TC_PASSWORD or INPUT_TC_PASSWORD.")
+
+    username_element = driver.find_element(by="name", value="tevenev")
+
+    username_element.send_keys(username)
 
     password = driver.find_element(by="name", value="pass")
-    password.send_keys(os.getenv("TC_PASSWORD"))
+    password.send_keys(password)
 
     form = driver.find_element(by="name", value="loginform")
     print(f"Submitting login form: {form}")

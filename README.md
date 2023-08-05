@@ -1,4 +1,4 @@
-# Camel training and feeding action
+# TeveClub camel training and feeding action
 
 This GitHub Action will train your camel and feed it. Schedule it to run every day for best results.
 
@@ -24,7 +24,7 @@ jobs:
 
       - name: Feed and train 🐪
         uses: danthelion/tc-feeder@v1
-        env:
-          TC_USER: ${{ secrets.TC_USER }}
-          TC_PASSWORD: ${{ secrets.TC_PASSWORD }}
+        with:
+          tc_user: ${{ secrets.TC_USER }}
+          tc_password: ${{ secrets.TC_PASSWORD }}
 ```
