@@ -12,12 +12,12 @@ RUN apt-get install -yqq unzip && \
     wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip && \
     unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
+ENV DISPLAY=:99
+
 COPY requirements.txt .
 
 RUN pip3 install -r requirements.txt
 
 COPY . .
-
-ENV DISPLAY=:99
 
 CMD ["python3", "main.py"]
