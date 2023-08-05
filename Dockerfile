@@ -1,5 +1,7 @@
 FROM ubuntu:latest
 
+WORKDIR /app
+
 RUN apt update && \
     apt install python3 python3-pip wget unzip curl -y
 
@@ -20,4 +22,4 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD ["python3", "main.py"]
+CMD ["python3", "/app/main.py"]
