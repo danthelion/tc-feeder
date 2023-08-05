@@ -17,4 +17,4 @@ jobs:
         env:
           TC_USER: ${{ secrets.TC_USER }}
           TC_PASSWORD: ${{ secrets.TC_PASSWORD }}
-        uses: ./.github/actions/feed-and-train
+        uses: ./action.yml
