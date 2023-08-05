@@ -37,9 +37,9 @@ def login(driver):
     password.send_keys(os.getenv("TC_PASSWORD"))
 
     form = driver.find_element(by="name", value="loginform")
-    print(f"Submitting form: {form}")
+    print(f"Submitting login form: {form}")
     form.submit()
-    print("Submitted form")
+    print("Submitted login form successfully")
 
 
 def feed(driver):
@@ -53,6 +53,7 @@ def feed(driver):
         _feed.click()
         print(f"Clicked feed button")
     except NoSuchElementException:
+        print(f"Feed button not found, skipping")
         pass
 
 
@@ -67,6 +68,7 @@ def learn(driver):
         _learn.click()
         print(f"Clicked learn button")
     except NoSuchElementException:
+        print(f"Learn button not found, skipping")
         pass
 
 

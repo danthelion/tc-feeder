@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  feed-and-train:
     runs-on: ubuntu-latest
     steps:
 
       - name: Feed and train 🐪
-        uses: danthelion/tc-feeder@0.4
+        uses: danthelion/tc-feeder@0.5
         env:
           TC_USER: ${{ secrets.TC_USER }}
           TC_PASSWORD: ${{ secrets.TC_PASSWORD }}

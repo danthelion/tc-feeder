@@ -2,7 +2,7 @@
 
 This GitHub Action will train your camel and feed it. Schedule it to run every day.
 
-Requires to secrets to be set:
+Requires two environment variables:
 
 - `TC_USER`: Your TC username
 - `TC_PASSWORD`: Your TC password
@@ -18,15 +18,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  feed-and-train:
     runs-on: ubuntu-latest
     steps:
 
-      - name: checkout repo content
-        uses: actions/checkout@v2
-
       - name: Feed and train 🐪
-        uses: danthelion/tc-feeder
+        uses: danthelion/tc-feeder@0.4
         env:
           TC_USER: ${{ secrets.TC_USER }}
           TC_PASSWORD: ${{ secrets.TC_PASSWORD }}
