@@ -1,11 +1,16 @@
+import logging
 import os
 
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-
+from tenacity import retry, stop_after_attempt
 
 load_dotenv()
+
+logging.basicConfig(level=logging.INFO)
+
+LOGGER = logging.getLogger(__name__)
 
 
 def get_driver():
@@ -22,22 +27,27 @@ def get_driver():
     for option in options:
         chrome_options.add_argument(option)
 
-    print("Starting Chrome driver")
+    LOGGER.info("Starting Chrome driver")
     driver = webdriver.Chrome(options=chrome_options)
     return driver
 
 
+@retry(stop=stop_after_attempt(3))
 def login(driver):
     driver.get("https://teveclub.hu")
 
     username = os.getenv("TC_USER", os.getenv("INPUT_TC_USER"))
     if not username:
-        raise ValueError("Username not found in environment. Please set either TC_USER or INPUT_TC_USER.")
-    print(f"Logging in as {username}")
+        raise ValueError(
+            "Username not found in environment. Please set either TC_USER or INPUT_TC_USER."
+        )
+    LOGGER.info(f"Logging in as {username}")
 
     password = os.getenv("TC_PASSWORD", os.getenv("INPUT_TC_PASSWORD"))
     if not password:
-        raise ValueError("Password not found in environment. Please set either TC_PASSWORD or INPUT_TC_PASSWORD.")
+        raise ValueError(
+            "Password not found in environment. Please set either TC_PASSWORD or INPUT_TC_PASSWORD."
+        )
 
     username_element = driver.find_element(by="name", value="tevenev")
 
@@ -47,13 +57,14 @@ def login(driver):
     password_element.send_keys(password)
 
     login_form = driver.find_element(by="name", value="loginform")
-    print(f"Submitting login form: {login_form}")
+    LOGGER.info(f"Submitting login form: {login_form}")
     login_form.submit()
-    print("Submitted login form successfully")
+    LOGGER.info("Submitted login form successfully")
 
 
+@retry(stop=stop_after_attempt(3))
 def feed(driver):
-    print(f"Loading feed page")
+    LOGGER.info(f"Loading feed page")
     driver.get("https://teveclub.hu/myteve.pet")
     try:
         _feed = driver.find_element(
@@ -61,14 +72,17 @@ def feed(driver):
             value='//*[@id="content ize"]/tbody/tr/td/table/tbody/tr[3]/td[1]/center/div/form/input',
         )
         _feed.click()
-        print(f"Clicked feed button")
+        LOGGER.info(f"Clicked feed button")
     except NoSuchElementException:
-        print(f"Feed button not found, skipping. Camel probably already fed today.")
+        LOGGER.info(
+            f"Feed button not found, skipping. Camel probably already fed today."
+        )
         pass
 
 
+@retry(stop=stop_after_attempt(3))
 def train(driver):
-    print(f"Loading training page")
+    LOGGER.info(f"Loading training page")
     driver.get("https://teveclub.hu/tanit.pet")
     try:
         _train = driver.find_element(
@@ -76,9 +90,9 @@ def train(driver):
             value='//*[@id="content ize"]/tbody/tr/td/table/tbody/tr[1]/td/font/b/div/form[1]/div/input',
         )
         _train.click()
-        print(f"Clicked train button")
+        LOGGER.info(f"Clicked train button")
     except NoSuchElementException:
-        print(
+        LOGGER.info(
             f"train button not found, skipping. Camel probably already studied today."
         )
         pass
