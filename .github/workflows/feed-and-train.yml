@@ -1,4 +1,4 @@
-name: feed & train camel
+name: Daily 🐪 training and feeding
 
 on:
   schedule:
@@ -11,7 +11,7 @@ jobs:
     steps:
 
       - name: Feed and train 🐪
-        uses: danthelion/tc-feeder@0.5
+        uses: danthelion/tc-feeder@v1
         env:
           TC_USER: ${{ secrets.TC_USER }}
           TC_PASSWORD: ${{ secrets.TC_PASSWORD }}

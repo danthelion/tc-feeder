@@ -1,6 +1,6 @@
 # Camel training and feeding action
 
-This GitHub Action will train your camel and feed it. Schedule it to run every day.
+This GitHub Action will train your camel and feed it. Schedule it to run every day for best results.
 
 Requires two environment variables:
 
@@ -10,7 +10,7 @@ Requires two environment variables:
 Example workflow:
 
 ```yaml
-name: feed & train camel
+name: Daily 🐪 training and feeding
 
 on:
   schedule:
@@ -23,7 +23,7 @@ jobs:
     steps:
 
       - name: Feed and train 🐪
-        uses: danthelion/tc-feeder@0.4
+        uses: danthelion/tc-feeder@v1
         env:
           TC_USER: ${{ secrets.TC_USER }}
           TC_PASSWORD: ${{ secrets.TC_PASSWORD }}

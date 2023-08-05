@@ -1,5 +1,5 @@
-name: train-and-feed
-description: This action will train and feed your camel!
+name: camel-train-and-feed
+description: Use this action will train and feed your camel every day!
 author: Daniel Palma
 branding:
   icon: "activity"

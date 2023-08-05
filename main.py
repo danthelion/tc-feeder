@@ -53,30 +53,32 @@ def feed(driver):
         _feed.click()
         print(f"Clicked feed button")
     except NoSuchElementException:
-        print(f"Feed button not found, skipping")
+        print(f"Feed button not found, skipping. Camel probably already fed today.")
         pass
 
 
-def learn(driver):
-    print(f"Loading learn page")
+def train(driver):
+    print(f"Loading training page")
     driver.get("https://teveclub.hu/tanit.pet")
     try:
-        _learn = driver.find_element(
+        _train = driver.find_element(
             by="xpath",
             value='//*[@id="content ize"]/tbody/tr/td/table/tbody/tr[1]/td/font/b/div/form[1]/div/input',
         )
-        _learn.click()
-        print(f"Clicked learn button")
+        _train.click()
+        print(f"Clicked train button")
     except NoSuchElementException:
-        print(f"Learn button not found, skipping")
+        print(
+            f"train button not found, skipping. Camel probably already studied today."
+        )
         pass
 
 
 def main():
-    driver = get_driver()
-    login(driver)
-    feed(driver)
-    learn(driver)
+    chrome_driver = get_driver()
+    login(driver=chrome_driver)
+    feed(driver=chrome_driver)
+    train(driver=chrome_driver)
 
 
 if __name__ == "__main__":
