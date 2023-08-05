@@ -1,0 +1,20 @@
+name: feed & train camel
+
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout repo content
+        uses: actions/checkout@v2
+
+      - name: Feed and train 🐪
+        env:
+          TC_USER: ${{ secrets.TC_USER }}
+          TC_PASSWORD: ${{ secrets.TC_PASSWORD }}
+        uses: ./.github/actions/feed-and-train
