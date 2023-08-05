@@ -1,5 +1,5 @@
-name: tc-train-and-feed
-description: This action will train and feed the camel
+name: train-and-feed
+description: This action will train and feed your camel!
 author: Daniel Palma
 branding:
   icon: "activity"
