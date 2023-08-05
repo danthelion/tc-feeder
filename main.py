@@ -43,12 +43,12 @@ def login(driver):
 
     username_element.send_keys(username)
 
-    password = driver.find_element(by="name", value="pass")
-    password.send_keys(password)
+    password_element = driver.find_element(by="name", value="pass")
+    password_element.send_keys(password)
 
-    form = driver.find_element(by="name", value="loginform")
-    print(f"Submitting login form: {form}")
-    form.submit()
+    login_form = driver.find_element(by="name", value="loginform")
+    print(f"Submitting login form: {login_form}")
+    login_form.submit()
     print("Submitted login form successfully")
 
 
