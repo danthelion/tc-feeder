@@ -10,8 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Checkout 🐪
+        uses: actions/checkout@v2
+
       - name: Feed and train 🐪
-        uses: danthelion/tc-feeder@v3
+        uses: ./action.yml
         with:
           tc_user: ${{ secrets.TC_USER }}
           tc_password: ${{ secrets.TC_PASSWORD }}

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from tenacity import retry, stop_after_attempt
-import chromedriver_autoinstaller
+# import chromedriver_autoinstaller
 
 load_dotenv()
 
@@ -15,7 +15,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 def get_driver():
-    chromedriver_autoinstaller.install()
+    # chromedriver_autoinstaller.install()
     chrome_options = webdriver.ChromeOptions()
     options = [
         "--headless",
