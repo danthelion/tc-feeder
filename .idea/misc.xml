@@ -3,7 +3,7 @@
   <component name="Black">
     <option name="executionMode" value="BINARY" />
     <option name="pathToExecutable" value="$USER_HOME$/.pyenv/shims/black" />
-    <option name="sdkUUID" value="e21bd489-348c-4a96-b0e1-25efd49764ef" />
+    <option name="sdkName" value="Python 3.10 (tc-feeder)" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

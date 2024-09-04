@@ -4,6 +4,8 @@ import os
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+import random
 from tenacity import retry, stop_after_attempt
 
 load_dotenv()
@@ -97,12 +99,28 @@ def train(driver):
         )
         pass
 
+@retry(stop=stop_after_attempt(3))
+def onenumbergame(driver):
+    LOGGER.info(f"Loading egyszamjatek page")
+    driver.get("https://teveclub.hu/egyszam.pet")
+    onenumbergame_input = driver.find_element(
+        by=By.NAME, value='honnan'
+    )
+    randnum = random.randint(1, 10000)
+    onenumbergame_input.send_keys(str(randnum))
+    LOGGER.info(f"Submitted guess {randnum}")
+    onenumbergame_submit = driver.find_element(
+        by=By.NAME, value='tipp'
+    )
+    onenumbergame_submit.submit()
+    LOGGER.info(f"Submitted guess")
 
 def main():
     chrome_driver = get_driver()
     login(driver=chrome_driver)
     feed(driver=chrome_driver)
     train(driver=chrome_driver)
+    onenumbergame(driver=chrome_driver)
 
 
 if __name__ == "__main__":
